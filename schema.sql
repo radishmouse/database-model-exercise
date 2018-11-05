@@ -15,6 +15,6 @@ create table blogs (
 create table comments (
   id serial primary key,
   comment text,
-  commenter_id references users (id),
-  blog_id references blogs (id)
+  commenter_id integer references users (id),
+  blog_id integer references blogs (id)
 );
