@@ -1,0 +1,18 @@
+const G = require('./modeling/groccery');
+
+G.add('soap', 5, false)
+    .then(result => {console.log(result);})
+G.getAll()
+    .then(result => {console.log(result);})
+G.getById(1)
+    .then(result => {console.log(result);})
+G.markCompleted(2)
+    .then(result => {console.log(result);})
+G.markPending(3)
+    .then(result => {console.log(result);})
+G.updateName(4, 'granola')
+    .then(result => {console.log(result);})
+G.updateQuantity('vodka', 100)
+    .then(result => {console.log(result);})
+G.deleteByName('granola')
+    .then(result => {console.log(result);})
