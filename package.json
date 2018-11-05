@@ -1,0 +1,29 @@
+{
+  "name": "database-model-exercise",
+  "version": "1.0.0",
+  "description": "- Fork this repo and send a PR for feedback!",
+  "main": "index.js",
+  "scripts": {
+    "debug": "node --inspect-brk index.js",
+    "reset-db": "dropdb groccery-list; createdb groccery-list; psql -f schema.sql groccery-list; psql -f seed.sql groccery-list;",
+    "dev": "nodeman index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mkdir-helen/database-model-exercise.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mkdir-helen/database-model-exercise/issues"
+  },
+  "homepage": "https://github.com/mkdir-helen/database-model-exercise#readme",
+  "devDependencies": {
+    "nodemon": "^1.18.6"
+  },
+  "dependencies": {
+    "pg-promise": "^8.5.1"
+  }
+}
