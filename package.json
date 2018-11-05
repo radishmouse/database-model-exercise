@@ -4,6 +4,8 @@
   "description": "- Fork this repo and send a PR for feedback!",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon index.js",
+    "reset-db": "dropdb blogblogblog-db; createdb blogblogblog-db; psql -f schema.sql blogblogblog-db; psql -f seed.sql blogblogblog-db;",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,5 +21,8 @@
   "homepage": "https://github.com/edwhelan/database-model-exercise#readme",
   "devDependencies": {
     "nodemon": "^1.18.6"
+  },
+  "dependencies": {
+    "pg-promise": "^8.5.1"
   }
 }
