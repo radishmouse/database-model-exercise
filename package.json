@@ -7,6 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
+    "debug": "node --inspect-brk index.js",
+    "dev": "nodemon index.js",
     "type": "git",
     "url": "git+https://github.com/salviolorenzo/database-model-exercise.git"
   },
