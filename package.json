@@ -1,0 +1,27 @@
+{
+  "name": "database-model-exercise",
+  "version": "1.0.0",
+  "description": "- Fork this repo and send a PR for feedback!",
+  "main": "index.js",
+  "dependencies": {
+    "nodemon": "^1.18.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js",
+    "debug": "node --inspect-bkr index.js",
+    "reset": "dropdb blog-3db; createdb blog-3db; psql -f schema.sql blog-3db"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/salviolorenzo/database-model-exercise.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/salviolorenzo/database-model-exercise/issues"
+  },
+  "homepage": "https://github.com/salviolorenzo/database-model-exercise#readme"
+}
