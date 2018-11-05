@@ -46,11 +46,12 @@ function getPostById(id) {
 }
 
 function getPostByAuthor(author_id) {
-  return db.any(`select 
+  return db.one(`select 
                   p.title, p.id
                 from posts p 
                   inner join authors a
-                  on $1 = a.id`,
+                    on $1 = a.id
+                where p.author_id = a.id`,
     [author_id])
 }
 
