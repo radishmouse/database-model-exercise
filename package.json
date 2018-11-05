@@ -4,11 +4,12 @@
   "description": "- Fork this repo and send a PR for feedback!",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "debug": "node --inspect-brk index.js",
     "dev": "nodemon index.js",
+    "reset": "dropdb groceries-db; createdb groceries-db; psql -f schema.sql groceries-db"
+  },
+  "repository": {
     "type": "git",
     "url": "git+https://github.com/salviolorenzo/database-model-exercise.git"
   },
@@ -18,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/salviolorenzo/database-model-exercise/issues"
   },
-  "homepage": "https://github.com/salviolorenzo/database-model-exercise#readme"
+  "homepage": "https://github.com/salviolorenzo/database-model-exercise#readme",
+  "dependencies": {
+    "nodemon": "^1.18.6"
+  }
 }

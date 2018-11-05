@@ -22,11 +22,11 @@ function getAll() {
 
 function getById(id) {
   return db.one(`select * from items where id=$1`, [id])
-    .catch(err => {
-      return {
-        name: `No items with that id`
-      }
-    })
+  // .catch(err => {
+  //   return {
+  //     name: `No items with that id`
+  //   }
+  // })
 }
 
 // UPDATE
@@ -40,7 +40,7 @@ function updateQuantity(id, quantity) {
 
 // DELETE
 function removeById(id) {
-  return db.result(`delete from items where id=$1`[id])
+  return db.result(`delete from items where id=$1`, [id])
 }
 
 module.exports = {
