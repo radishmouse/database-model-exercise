@@ -1,8 +1,10 @@
 # Description
 
+- Fork this repo and send a PR for feedback!
+
 ## GroceryList
 
-- Fork this repo and create a branch for your grocery list app.
+- Create a branch for your grocery list app.
 
 - Set up a groceries database
 - Add a table for `groceryitems` with the following columns
@@ -17,3 +19,14 @@
 
 - Group these functions into their own node module.
 
+
+## BlogBlogBlog
+
+Similar to the GroceryList app, you'll create a database with the following tables:
+
+- Posts
+- Authors
+
+You'll need to add foreign keys in your `create table` statements, and you'll want additional queries that use `inner join` to retrieve info from both tables.
+
+### Bonus: add a Comments table
