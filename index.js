@@ -1,4 +1,4 @@
-import G from './models/groccery';
+const G = require('./modeling/groccery');
 
 G.add('soap', 5, false)
     .then(result => {console.log(result);})

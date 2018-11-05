@@ -6,7 +6,7 @@
   "scripts": {
     "debug": "node --inspect-brk index.js",
     "reset-db": "dropdb groccery-list; createdb groccery-list; psql -f schema.sql groccery-list; psql -f seed.sql groccery-list;",
-    "dev": "nodeman index.js",
+    "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

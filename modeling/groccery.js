@@ -6,7 +6,7 @@ const db = pgp ({
 });
 
 //CREATE
-function add(name){
+function add(name, quantity, completed){
     return db.result(`insert into gList(name, quantity, completed)
         values
             ($1, $2, $3)
@@ -23,7 +23,7 @@ function getById(id){
     return db.one(`select * from gList where id=$1`, [id])
         .catch(err => {
             return {
-                name: 'No todo found.'
+                name: 'No gList found.'
             };
         })
 }
@@ -58,7 +58,7 @@ function updateQuantity(name, quantity){
 //DELETE
 
 function deleteByName(name){
-    return db.result(`delete from todos where id=(select * from gList where name ilike $1)`);
+    return db.result(`delete from gList where id=(select * from gList where name ilike $1)`);
 }
 
 
