@@ -4,6 +4,8 @@
   "description": "- Fork this repo and send a PR for feedback!",
   "main": "index.js",
   "scripts": {
+    "debug":"node --inspect-brk index.js",
+    "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,5 +21,8 @@
   "homepage": "https://github.com/amelia678/database-model-exercise#readme",
   "dependencies": {
     "pg-promise": "^8.5.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.6"
   }
 }
