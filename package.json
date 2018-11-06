@@ -1,0 +1,29 @@
+{
+  "name": "database-model-exercise",
+  "version": "1.0.0",
+  "description": "- Fork this repo and send a PR for feedback!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js",
+    "debug": "node --inspect-brk index.js",
+    "reset-db": "dropdb groceries; createdb groceries; psql -f schema.sql groceries; psql -f seed.sql groceries"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexrogers823/database-model-exercise.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexrogers823/database-model-exercise/issues"
+  },
+  "homepage": "https://github.com/alexrogers823/database-model-exercise#readme",
+  "devDependencies": {
+    "nodemon": "^1.18.6"
+  },
+  "dependencies": {
+    "pg-promise": "^8.5.1"
+  }
+}
