@@ -1,3 +1,5 @@
+const Grocery = require("./models/Grocery");
+
 Grocery.add("dog food", 1)
   .catch(err => {
     console.log(err);
