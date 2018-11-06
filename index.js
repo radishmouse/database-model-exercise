@@ -1,14 +1,14 @@
 const Blog = require('./models/Blog');
 
-Blog.showAllBlogs()
-  .then(result => {
-    console.log(result);
-  })
+// Blog.showAllBlogs()
+//   .then(result => {
+//     console.log(result);
+//   })
 
-Blog.showAllComments()
-  .then(result => {
-    console.log(result);
-  })
+// Blog.showAllComments()
+//   .then(result => {
+//     console.log(result);
+//   })
 
 // Blog.addABlog('How i went to the store', 'alsdlkasjdkjads', 2);
 // Blog.addAUser('Edward Whelan');
@@ -23,3 +23,12 @@ Blog.showAllComments()
 //     console.log(result);
 //   })
 
+Blog.showAllOfUsersBlog(1)
+  .then(results => {
+    console.log(results);
+  })
+
+Blog.showBlogPlusComments(3)
+  .then(results => {
+    console.log(results);
+  })

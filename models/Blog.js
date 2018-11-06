@@ -23,6 +23,7 @@ function addAComment(comment, commenter_id, blog_id) {
     values ($1, $2, $3)
     returning id`, [comment, commenter_id, blog_id])
 }
+
 //RETRIEVE
 //show blogs
 function showAllBlogs() {
@@ -37,6 +38,31 @@ function showAllComments() {
   return db.any('select * from comments')
 }
 // Show blog with name
+function showAllOfUsersBlog(user) {
+  return db.any(`select
+	 name,
+	 b.title,
+	 b.post
+	 from users
+	 	inner join
+	 		blogs b 
+	 		on b.author_id = users.id
+	 where users.id = $1`, [user]
+  )
+}
+
+function showBlogPlusComments(blog) {
+  return db.any(`select
+  title,
+  post,
+  c.comment
+  from blogs
+    inner join
+      comments c 
+      on c.blog_id = blogs.id
+  where blogs.id = $1`, [blog]
+  )
+}
 
 //UPDATE
 // edit contents of a post
@@ -60,4 +86,6 @@ module.exports = {
   addAComment,
   changeBlogContents,
   deleteComment,
+  showAllOfUsersBlog,
+  showBlogPlusComments,
 }
