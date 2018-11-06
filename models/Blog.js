@@ -18,22 +18,31 @@ function addAUser(name) {
   returning id`, [name])
 }
 //make a comment
-
+function addAComment(comment, commenter_id, blog_id) {
+  return db.one(`insert into comments(comment, commenter_id, blog_id) 
+    values ($1, $2, $3)
+    returning id`, [comment, commenter_id, blog_id])
+}
 //RETRIEVE
-//show all blogs/users
+//show blogs
 function showAllBlogs() {
   return db.any('select * from blogs')
 }
-
+//show users
 function showAllUsers() {
   return db.any('select * from users')
 }
-
+//show comments
 function showAllComments() {
   return db.any('select * from comments')
 }
 // Show blog with name
+
 //UPDATE
+// edit contents of a post
+function changeBlogContents(post, id) {
+  return db.result(`update blogs set post=$1 where id=$2`, [post, id])
+}
 
 //DELETE
 
@@ -44,4 +53,6 @@ module.exports = {
   showAllComments,
   addABlog,
   addAUser,
+  addAComment,
+  changeBlogContents,
 }
