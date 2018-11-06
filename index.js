@@ -1,14 +1,44 @@
-const pgp = require('pg-promise');
-const db = pgp({
-    host: 'localhost', 
-    port: '5432', 
-    database: 'groceryitems'
-});
+const groceryItems = require('.models/groceryItems');
 
-function add(name, quantity) {
-    return db.result(`insert into groceries (name, quantity)
-        values
-            ($1, $2)
-        returning id
-    `[name, quantity])
-}
+// example
+// groceryItems.add('bread', 2)
+//     .catch(err => {
+//         console.log(err);
+//     })
+//     .then(result => {
+//         console.log(result);
+//     })
+
+
+// example
+// groceryItems.getAll()
+//     .then(result => {
+//         console.log(result);
+//     })
+
+
+// example
+// groceryItems.getById(1) 
+//     .then(result => {console.log(result); })
+
+
+// example
+// groceryItems.updateName(2, 'apples') 
+//     .then(result => {
+//         console.log(result);
+//     })
+
+
+// example
+// groceryItems.markCompleted (2, 'apples')
+//     .then(result => {
+//         console.log(result);
+//     })
+
+
+// example
+
+groceryItems.deleteById(1)
+    .then(result => {
+        console.log(result.rowCount);
+    })
