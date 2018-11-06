@@ -45,6 +45,10 @@ function changeBlogContents(post, id) {
 }
 
 //DELETE
+// delete a comment from a post
+function deleteComment(id) {
+  return db.result(`delete from comments where id=$1`, [id])
+}
 
 //functions to export go below
 module.exports = {
@@ -55,4 +59,5 @@ module.exports = {
   addAUser,
   addAComment,
   changeBlogContents,
+  deleteComment,
 }
