@@ -4,7 +4,7 @@
   "description": "- Fork this repo and send a PR for feedback!",
   "main": "index.js",
   "scripts": {
-    "debug":"node --inspect-brk index.js",
+    "debug": "node --inspect-brk index.js",
     "dev": "nodemon index.js",
     "reset-db": "dropdb groceries-db; createdb groceries-db; psql -f schema.sql groceries-db; psql -f seed.sql groceries-db",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/amelia678/database-model-exercise#readme",
   "dependencies": {
+    "dotenv": "^6.1.0",
     "pg-promise": "^8.5.1"
   },
   "devDependencies": {

@@ -1,4 +1,6 @@
-const Item = require('./models/Item');
+require('dotenv').config();
+
+// const Item = require('./models/Item');
 const User = require('./models/User')
 
 // Item.add('poptarts', 5) 
@@ -7,7 +9,12 @@ const User = require('./models/User')
 //         console.log('added to the list')
 //     })
 
-User.add('britney')
+// User.add('britney')
+//     .then(result => {
+//         console.log(result);
+//     })
+
+User.add('stephanie')
     .then(result => {
-        console.log(result);
+        console.log(result)
     })

@@ -7,7 +7,7 @@ class User {
 }
 // ===================================
 // CREATE
-add(name) {
+static add(name) {
     return db.one(`
         insert into users
             (name)
@@ -15,6 +15,10 @@ add(name) {
             ($1)
         returning id
         `, [name])
+        .then(data => {
+            const u = new User(data.id, name);
+            return u;
+        })
 }
 
 
