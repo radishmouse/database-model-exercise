@@ -46,7 +46,7 @@ class Grocery {
       });
   }
   // UPDATE
-  static updateName(id, name) {
+  updateName(id, name) {
     return db
       .result(
         `update groceryitems

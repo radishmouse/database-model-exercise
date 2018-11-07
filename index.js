@@ -1,8 +1,10 @@
 const Grocery = require("./models/Grocery");
 
-Grocery.add("jelly", 1);
+// Grocery.add("jelly", 1);
 
-// Grocery.updateName(6, "Tortillas");
+const newItem = new Grocery();
+
+newItem.updateName(8, "Sour Dough Bread");
 
 // Grocery.getById(3);
 
