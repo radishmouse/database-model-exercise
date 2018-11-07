@@ -55,11 +55,11 @@ Blog.Users.showAllBlogsOfUser(24)
 
 // Blog.Blog.createBlog('How i like to live', 'evil evil evil', 3);
 //Allow user to create blog
-Blog.Users.addAUser('This Big Guy')
-  .then(result => {
-    Blog.Blog.createBlog('This is a test', 'womp womp womp', result.id);
-    return result
-  })
+// Blog.Users.addAUser('This Big Guy')
+//   .then(result => {
+//     Blog.Blog.createBlog('This is a test', 'womp womp womp', result.id);
+//     return result
+//   })
 
 
 // const discourse =  Blog.Blog(3);
@@ -71,3 +71,7 @@ Blog.Users.addAUser('This Big Guy')
 
 // discourse.editContentsofPost('Fictional content here');
 // aBlog.deleteABlog();
+const newComment = new Blog.Comment(1);
+Blog.Comment.createComment('I wish i was never born', 1, 1);
+Blog.Comment.getUsersComments(1);
+// newComment.deleteComment();

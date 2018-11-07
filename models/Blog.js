@@ -1,6 +1,8 @@
 const db = require('./db');
 
 // declare a class named 'Users'
+//============+++ USERS CLASS +++===================
+
 class Users {
   //what properties should a user start off with
   //constructor is a method
@@ -121,6 +123,46 @@ class Comment {
     this.id = id;
     this.comment = comment;
   }
+  // ======== CREATE ===========
+  //create a comment
+  static createComment(comment, commenter_id, blog_id) {
+    return db.one(
+      `insert into comments
+      (comment, commenter_id, blog_id) 
+      values ($1, $2, $3)
+      returning id`, [comment, commenter_id, blog_id])
+  }
+  // ======== RETRIEVE ===========
+  //retrieve all comments from a user
+  static getUsersComments(commenter_id) {
+    return db.any(`select
+      u.name,
+      comment
+      from comments
+        inner join
+          users u 
+          on u.id = commenter_id
+      where u.id = $1`, [commenter_id]
+    )
+      .then(results => {
+        console.table(results);
+      })
+  }
+
+  // ======== UPDATE ===========
+  editContentsOfComment(comment) {
+    return db.one(
+      `update comments
+         set comment=$1 
+         where id=$2`, [comment, this.id])
+  }
+  // ======== DELETE ===========
+  deleteComment() {
+    return db.result(`
+  delete from
+  comments where id=$1
+  `, [this.id])
+  }
 
 
 }
@@ -201,6 +243,7 @@ function changeBlogContents(post, id) {
 module.exports = {
   Users,
   Blog,
+  Comment,
   showAllBlogs,
   // showAllUsers,
   showAllComments,
