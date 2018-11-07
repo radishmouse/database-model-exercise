@@ -51,10 +51,33 @@ static getById(id) {
 // ===================================
 // UPDATE
 
+updateName(name) {
+    this.name = name;
+    return db.result(`
+        update users
+            set name = $2
+        where id=$1
+        `, [this.id, name]);
+}
+
 
 
 // ===================================
 // DELETE
+
+delete(){
+    return db.result(`
+    delete from users
+    where id = $1
+    `, [this.id]);
+}
+
+static deleteById(id) {
+    return db.result(`
+    delete from users
+    where id = $1
+    `, [id]);
+}
 
 }
 module.exports = User
