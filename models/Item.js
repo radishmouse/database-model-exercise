@@ -25,18 +25,44 @@ class Item {
     // ===================================
     // RETRIEVE
     
+    static getAll() {
+        return db.any(`
+        select * from groceryitems
+        `).then(itemArray => {
+        const instanceArray = itemArray.map(itemObj => {
+            const i = new Item(itemObj.id, itemObj.name);
+            return i;
+        });
+        return instanceArray;
+    })
     
     
-    
+}
+    static getById(id) {
+        return db.one(`select * from groceryitems where id= $1`, [id])
+        .then(result => {
+            const i = new Item(result.id, result.name);
+            return i;
+        })
+        .catch(err => {
+            return 'no grocery item found';
+        });
+            
+    }
     
     // ===================================
     // UPDATE
-    
+    updateName(name){
+        return db.one(`
+        update groceryitems
+            set name=$2
+        where id = $1
+        `, [this.id, name]);
+    }
     
     
     // ===================================
     // DELETE
     
 }
-
 module.exports = Item;
