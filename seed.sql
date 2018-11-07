@@ -1,3 +1,5 @@
+
+
 insert into groceryitems
     (name, quantity)
 values
@@ -6,4 +8,13 @@ values
     ('frozen pizza', 2),
     ('discounted halloween candy', 3),
     ('honeycrisp apples', 6),
-    ('wheaties', 1)
+    ('wheaties', 1);
+
+insert into users
+    (name)
+values
+    ('justin'),
+    ('JC'),
+    ('chris'),
+    ('joey'),
+    ('lance');
