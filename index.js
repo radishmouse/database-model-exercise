@@ -1,25 +1,31 @@
 const Grocery = require("./models/Grocery");
 
-Grocery.add("dog food", 1)
-  .catch(err => {
-    console.log(err);
-  })
-  .then(result => {
-    console.log(result);
-  });
+Grocery.add("jelly", 1);
 
-Grocery.getAll().then(result => {
-  console.log(result);
-});
+// Grocery.updateName(6, "Tortillas");
 
-Grocery.getById(4).then(result => {
-  console.log(result);
-});
+// Grocery.getById(3);
 
-Grocery.updateName(6, "Tortillas").then(result => {
-  console.log(result);
-});
+// Grocery.deleteById(12);
 
-Grocery.deleteById(6).then(result => {
-  console.log(result.rowCount);
-});
+// Grocery.add("super food", 6)
+//   .catch(err => {
+//     console.log(err);
+//   })
+//   .then(result => {
+//     console.log(result);
+//   });
+
+// Grocery.getAll();
+
+// Grocery.getById(4).then(result => {
+//   console.log(result);
+// });
+
+// Grocery.updateName(6, "Tortillas").then(result => {
+//   console.log(result);
+// });
+
+// Grocery.deleteById(10).then(result => {
+//   console.log(result.rowCount);
+// });
