@@ -1,5 +1,5 @@
 
-
+-- have to list grocery items first due to foreign key
 insert into groceryitems
     (name, quantity)
 values
