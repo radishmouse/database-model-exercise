@@ -13,7 +13,7 @@ const Blog = require('./models/Blog');
 //   })
 
 // Blog.addABlog('How i went to the store', 'alsdlkasjdkjads', 2);
-Blog.Users.addAUser('Edward Whelan');
+// Blog.Users.addAUser('Edward Whelan');
 // Blog.addAComment('It stinks!', 1, 1);
 // Blog.changeBlogContents('This is the best!', 1)
 //   .then(result => {
@@ -34,3 +34,16 @@ Blog.showBlogPlusComments(3)
   .then(results => {
     console.log(results);
   })
+
+
+// CLASS TESTS 
+
+Blog.Users.addAUser('Edward Whelan');
+Blog.Users.showAllUsers()
+  .then(allUsers => {
+    console.table(allUsers)
+  })
+//UPDATE NAME OF BELOW USER
+const ed = new Blog.Users(10, 'Edward Whelan');
+// ed.updateName('Frank');
+ed.deleteUser();

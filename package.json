@@ -4,6 +4,7 @@
   "description": "- Fork this repo and send a PR for feedback!",
   "main": "index.js",
   "scripts": {
+    "debug": "node --inspect-brk index.js",
     "dev": "nodemon index.js",
     "reset-db": "dropdb blogblogblog-db; createdb blogblogblog-db; psql -f schema.sql blogblogblog-db; psql -f seed.sql blogblogblog-db;",
     "test": "echo \"Error: no test specified\" && exit 1"

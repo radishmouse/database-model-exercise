@@ -11,6 +11,7 @@ class Users {
     this.id = id;
     this.name = name;
   }
+  // ======== CREATE ===========
   //make a user
   static addAUser(name) {
     return db.one(`
@@ -23,6 +24,33 @@ class Users {
         return u;
       });
   }
+  // ======== RETRIEVE ===========
+  //show users
+  static showAllUsers() {
+    return db.any('select * from users')
+      .then(userArray => {
+        const instanceArray = userArray.map(userObj => {
+          const u = new Users(userObj.id, userObj.name);
+          return u
+        });
+        return instanceArray;
+      })
+  }
+  // ======== UPDATE ===========
+  updateName(name) {
+    return db.result(`
+    update users
+    set name=$2
+    where id=$1
+    `, [this.id, name]);
+  }
+  // ======== DELETE ===========
+  deleteUser() {
+    return db.result(`delete from users where id=$1`
+      , [this.id])
+  }
+
+
 
 }
 
@@ -68,10 +96,10 @@ function addAComment(comment, commenter_id, blog_id) {
 function showAllBlogs() {
   return db.any('select * from blogs')
 }
-//show users
-function showAllUsers() {
-  return db.any('select * from users')
-}
+// //show users
+// function showAllUsers() {
+//   return db.any('select * from users')
+// }
 //show comments
 function showAllComments() {
   return db.any('select * from comments')
@@ -111,21 +139,21 @@ function changeBlogContents(post, id) {
 
 //DELETE
 // delete a comment from a post
-function deleteComment(id) {
-  return db.result(`delete from comments where id=$1`, [id])
-}
+// function deleteComment(id) {
+//   return db.result(`delete from comments where id=$1`, [id])
+// }
 
 //functions to export go below
 module.exports = {
   Users,
   showAllBlogs,
-  showAllUsers,
+  // showAllUsers,
   showAllComments,
   addABlog,
   // addAUser,
   addAComment,
   changeBlogContents,
-  deleteComment,
+  // deleteComment,
   showAllOfUsersBlog,
   showBlogPlusComments,
 }
