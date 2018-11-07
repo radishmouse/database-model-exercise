@@ -14,7 +14,16 @@ const User = require('./models/User')
 //         console.log(result);
 //     })
 
-User.add('stephanie')
+// User.add('stephanie')
+//     .then(result => {
+//         console.log(result)
+//     })
+
+User.getAll()
     .then(result => {
-        console.log(result)
-    })
+        console.log(result);
+    });
+
+// User.getById(5)
+//     .then(result => {
+//         console.log(result)});

@@ -3,7 +3,7 @@ const db = require('./db');
 class User {
     constructor(id, name) {
     this.id= id;
-    this.name=id;
+    this.name= name;
 }
 // ===================================
 // CREATE
@@ -26,9 +26,26 @@ static add(name) {
 
 // ===================================
 // RETRIEVE
+static getAll() {
+    return db.any(`
+        select * from users
+        `).then(userArray => {
+            const instanceArray = userArray.map(userObj => {
+                const u = new User(userObj.id, userObj.name);
+                return u;
+            });
+            return instanceArray;
+        })
+}
 
-
-
+static getById(id) {
+    return db.one(`
+    select * from users where id=$1`, [id])
+    .then(result => {
+        const u = new User(result.id, result.name);
+        return u;
+    })
+}
 
 
 // ===================================
