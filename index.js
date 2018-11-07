@@ -25,25 +25,49 @@ const Blog = require('./models/Blog');
 //     console.log(result);
 //   })
 
-Blog.showAllOfUsersBlog(1)
-  .then(results => {
-    console.log(results);
-  })
+// Blog.showAllOfUsersBlog(1)
+//   .then(results => {
+//     console.log(results);
+//   })
 
-Blog.showBlogPlusComments(3)
-  .then(results => {
-    console.log(results);
-  })
+// Blog.showBlogPlusComments(3)
+//   .then(results => {
+//     console.log(results);
+//   })
 
 
 // CLASS TESTS 
 
-Blog.Users.addAUser('Edward Whelan');
+// Blog.Users.addAUser('Edward Whelan');
 Blog.Users.showAllUsers()
   .then(allUsers => {
     console.table(allUsers)
   })
 //UPDATE NAME OF BELOW USER
-const ed = new Blog.Users(10, 'Edward Whelan');
+// const ed = new Blog.Users(10, 'Edward Whelan');
 // ed.updateName('Frank');
-ed.deleteUser();
+// ed.deleteUser();
+
+Blog.Users.showAllBlogsOfUser(24)
+  .then(results => {
+    console.table(results);
+  })
+
+// Blog.Blog.createBlog('How i like to live', 'evil evil evil', 3);
+//Allow user to create blog
+Blog.Users.addAUser('This Big Guy')
+  .then(result => {
+    Blog.Blog.createBlog('This is a test', 'womp womp womp', result.id);
+    return result
+  })
+
+
+// const discourse =  Blog.Blog(3);
+// const aBlog = new Blog.Blog(1);
+// discourse.showCommentsOnBlog()
+//   .then(results => {
+//     console.table(results);
+//   })
+
+// discourse.editContentsofPost('Fictional content here');
+// aBlog.deleteABlog();

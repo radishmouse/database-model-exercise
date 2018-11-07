@@ -36,6 +36,20 @@ class Users {
         return instanceArray;
       })
   }
+  //get blogs from USER
+  static showAllBlogsOfUser(id) {
+    return db.any(`select
+    name,
+    b.id,
+    b.title,
+    b.post
+    from users
+      inner join
+        blogs b 
+        on b.author_id = users.id
+    where users.id = $1`, [id])
+  }
+
   // ======== UPDATE ===========
   updateName(name) {
     return db.result(`
@@ -49,20 +63,60 @@ class Users {
     return db.result(`delete from users where id=$1`
       , [this.id])
   }
-
-
-
 }
-
-class Blogs {
+//============+++ BLOG CLASS +++===================
+class Blog {
   constructor(id, title, post) {
     this.id = id;
     this.title = title;
     this.post = post;
   }
+  // ======== CREATE ===========
+  //create a blog
+  static createBlog(title, post, authorID) {
+    return db.one(`insert into blogs(title, post, author_id) 
+  values ($1, $2, $3)
+  returning id`, [title, post, authorID])
+      .then(result => {
+        const b = new Blog(result.title, result.post, result.authorID)
+        return b;
+      })
+  }
+  // ======== RETRIEVE ==========
+  //all comments attached to a blog
+  showCommentsOnBlog() {
+    return db.any(`select
+title,
+post,
+c.comment
+from blogs
+  inner join
+    comments c 
+    on c.blog_id = blogs.id
+where blogs.id = $1`, [this.id]
+    )
+  }
+
+  // ======== UPDATE ===========
+  editContentsofPost(post) {
+    return db.one(
+      `update blogs
+         set post=$1 
+         where id=$2`, [post, this.id])
+  }
+
+  // ======== DELETE ===========
+  deleteABlog() {
+    return db.result(`
+  delete from
+   blogs 
+   where id=$1`,
+      [this.id])
+  }
+
 }
 
-class Comments {
+class Comment {
   constructor(id, comment) {
     this.id = id;
     this.comment = comment;
@@ -146,6 +200,7 @@ function changeBlogContents(post, id) {
 //functions to export go below
 module.exports = {
   Users,
+  Blog,
   showAllBlogs,
   // showAllUsers,
   showAllComments,
