@@ -1,22 +1,61 @@
-const pgp = require('pg-promise')();
+const db = require('./db');
 
-const db = pgp({
-  host: 'localhost',
-  port: 5432,
-  database: 'blogblogblog-db'
-});
+// declare a class named 'Users'
+class Users {
+  //what properties should a user start off with
+  //constructor is a method
+  constructor(id, name) {
+    //define properties that 
+    //are already names of
+    //the database columns
+    this.id = id;
+    this.name = name;
+  }
+  //make a user
+  static addAUser(name) {
+    return db.one(`
+        insert into users
+        (name) 
+        values ($1)
+        returning id`, [name])
+      .then(data => {
+        const u = new Users(data.id, name);
+        return u;
+      });
+  }
 
+}
+
+class Blogs {
+  constructor(id, title, post) {
+    this.id = id;
+    this.title = title;
+    this.post = post;
+  }
+}
+
+class Comments {
+  constructor(id, comment) {
+    this.id = id;
+    this.comment = comment;
+  }
+
+
+}
+// function doThing() {
+
+// }
 // CREATE
 // make a blog post
 function addABlog(title, post, author_id) {
   return db.one(`insert into blogs(title, post, author_id) values ($1, $2, $3)
   returning id`, [title, post, author_id])
 }
-//make a user
-function addAUser(name) {
-  return db.one(`insert into users(name) values ($1)
-  returning id`, [name])
-}
+// //make a user
+// function addAUser(name) {
+//   return db.one(`insert into users(name) values ($1)
+//   returning id`, [name])
+// }
 //make a comment
 function addAComment(comment, commenter_id, blog_id) {
   return db.one(`insert into comments(comment, commenter_id, blog_id) 
@@ -78,11 +117,12 @@ function deleteComment(id) {
 
 //functions to export go below
 module.exports = {
+  Users,
   showAllBlogs,
   showAllUsers,
   showAllComments,
   addABlog,
-  addAUser,
+  // addAUser,
   addAComment,
   changeBlogContents,
   deleteComment,
