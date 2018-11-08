@@ -18,3 +18,12 @@ values
     ('chris'),
     ('joey'),
     ('lance');
+
+insert into stores
+    (name)
+values  
+    ('publix'),
+    ('kroger'),
+    ('target'),
+    ('sprouts'),
+    ('whole foods');
