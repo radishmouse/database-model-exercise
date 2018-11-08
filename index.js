@@ -1,10 +1,10 @@
 require('dotenv').config();
 const User = require('./models/User')
-
+const Item = require('./models/Item');
 const express = require('express');
 const app = express();
 
-// Listen for a GET request
+// Listen for a GET request for User
 app.get('/users', (req, res) => {
     User.getAll()
     .then(allUsers => {
@@ -30,17 +30,22 @@ app.get('/users/:id([0-9]+)', (req, res) => {
 app.get('/users/register', (req, res) => {
     res.send('you are on the registration page');
 })
+
+
+// Listen to GET request for grocery Item
+
+app.get('/groceryitems', (req, res) => {
+    Item.getAll()
+    .then(allItems => {
+        res.send(allItems);
+    })
+});
+
 app.listen(3000, () => {
     console.log('Your express app is ready!')
 });
 
 
-
-
-
-
-
-// const Item = require('./models/Item');
 
 // const justin = new User(1, 'justin');
 
