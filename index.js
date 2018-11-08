@@ -13,16 +13,23 @@ app.get('/users', (req, res) => {
     })
     // res.send('Wazzuuuuuuup Express');
 });
-
-app.get('/users/:id', (req, res) => {
+// Match the string "/user/" followed by one or more digits
+app.get('/users/:id([0-9]+)', (req, res) => {
     console.log(req.params.id);
     User.getById(req.params.id)
         .then(theUser => {
             res.send(theUser);
-        });
+        })
+        .catch(err => {
+            res.send({
+                message: `no soup for you`
+            });
+        })
+});
+
+app.get('/users/register', (req, res) => {
+    res.send('you are on the registration page');
 })
-
-
 app.listen(3000, () => {
     console.log('Your express app is ready!')
 });
