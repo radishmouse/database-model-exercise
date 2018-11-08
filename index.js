@@ -41,6 +41,19 @@ app.get('/groceryitems', (req, res) => {
     })
 });
 
+app.get('/groceryitems/:id([0-9]+)', (req, res) => {
+    console.log(req.params.id);
+    Item.getById(req.params.id)
+        .then(theItem => {
+            res.send(theItem);
+        })
+        .catch(err => {
+            res.send({
+                message: `no groceries for you! `
+            });
+        })
+});
+
 app.listen(3000, () => {
     console.log('Your express app is ready!')
 });

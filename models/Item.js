@@ -45,7 +45,7 @@ class Item {
             return i;
         })
         .catch(err => {
-            return 'no grocery item found';
+            return 'no groceries for you!';
         });
             
     }
