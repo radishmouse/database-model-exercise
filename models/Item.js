@@ -60,9 +60,23 @@ class Item {
         `, [this.id, name]);
     }
     
+    assigntoUser(itemId, userId) {
+        this.id = itemId;
+        return db.result(`
+        update groceryitems
+            set user_id = $2
+        where id=$1
+        `, [this.id, userId])
+
+    }
     
     // ===================================
     // DELETE
+
+    static deleteById(id){
+        return db.result(`delete from groceryitems where id=$1
+        `, [id])
+    }
     
 }
 module.exports = Item;

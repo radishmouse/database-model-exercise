@@ -8,6 +8,12 @@ const Item = require('./models/Item');
 // const firstItem = new Item(1, 'la croix');
 // firstItem.updateName('pamplemousse');
 
+// firstItem.assigntoUser(2, 6);
+Item.deleteById(6)
+    .then(result => {
+        console.log(result)
+    });
+
 Item.getAll()
     .then(result => {
         console.log(result)
