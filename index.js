@@ -36,6 +36,13 @@ app.post('/users', (req, res) => {
         })
 })
 
+app.post('/groceryitems', (req, res) => {
+    newGroceryItem = req.body.name
+    Item.add(newGroceryItem)
+        .then(theItem => {
+            res.send(theItem)
+        })
+    })
 
 // Match the string "/user/" followed by one or more digits
 app.get('/users/:id([0-9]+)', (req, res) => {
