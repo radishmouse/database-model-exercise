@@ -7,6 +7,7 @@ create table groceryitems (
     id serial primary key,
     name text,
     quantity integer,
+    purchased boolean,
     user_id integer references users (id)
 );
 

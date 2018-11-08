@@ -5,6 +5,14 @@ const Store = require('./models/Store');
 const express = require('express');
 const app = express();
 
+const bodyParser = require('body-parser');
+
+// configure body-parser to read data sent by HTML form tags
+app.use(bodyParser.urlencoded({ extended: false }));
+// configure body-parser to read JSON bodies
+app.use(bodyParser.json());
+
+
 
 
 // Listen for a GET request for User
@@ -14,8 +22,21 @@ app.get('/users', (req, res) => {
         
         res.send(allUsers);
     })
-    res.send('Wazzuuuuuuup Express');
+    // res.send('Wazzuuuuuuup Express');
 });
+
+// Listen for POST request
+app.post('/users', (req, res) => {
+    // console.log(req.body);
+    // res.send('ok')
+    const newUserName= req.body.name
+    User.add(newUserName)
+        .then(theUser => {
+            res.send(theUser)
+        })
+})
+
+
 // Match the string "/user/" followed by one or more digits
 app.get('/users/:id([0-9]+)', (req, res) => {
     console.log(req.params.id);

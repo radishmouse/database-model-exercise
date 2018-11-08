@@ -69,6 +69,14 @@ class Item {
         `, [this.id, userId])
 
     }
+
+    updatePurchased() {
+        return db.result(`
+        update groceryitems
+            set purchased = $2
+        where id = $1
+        `, [this.id, true]);
+    }
     
     // ===================================
     // DELETE
