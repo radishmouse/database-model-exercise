@@ -38,6 +38,10 @@ class Users {
         return instanceArray;
       })
   }
+
+  static getById(id) {
+    return db.one(`select * from users where id=$1`, [id])
+  }
   //get blogs from USER
   static showAllBlogsOfUser(id) {
     return db.any(`select
@@ -163,8 +167,6 @@ class Comment {
   comments where id=$1
   `, [this.id])
   }
-
-
 }
 // function doThing() {
 
