@@ -7,25 +7,38 @@ const app = express();
 
 const bodyParser = require('body-parser');
 
+const page = require('./views/page');
+const userList = require('./views/userList');
+
+
 // configure body-parser to read data sent by HTML form tags
 app.use(bodyParser.urlencoded({ extended: false }));
 // configure body-parser to read JSON bodies
 app.use(bodyParser.json());
 
 
+app.get('/', (req, res) => {
+    const thePage = page('hey there')
+    res.send(thePage);
 
+
+
+});
 
 // Listen for a GET request for User
 app.get('/users', (req, res) => {
     User.getAll()
     .then(allUsers => {
-        
-        res.send(allUsers);
+        const usersUL = userList(allUsers);
+        const thePage = page(usersUL);
+
+        res.send(thePage);
     })
     // res.send('Wazzuuuuuuup Express');
 });
 
 // Listen for POST request
+// Create a new user
 app.post('/users', (req, res) => {
     // console.log(req.body);
     // res.send('ok')
@@ -35,7 +48,7 @@ app.post('/users', (req, res) => {
             res.send(theUser)
         })
 })
-
+// Create a new grocery item
 app.post('/groceryitems', (req, res) => {
     newGroceryItem = req.body.name
     Item.add(newGroceryItem)
@@ -43,6 +56,24 @@ app.post('/groceryitems', (req, res) => {
             res.send(theItem)
         })
     })
+
+app.post('users/:id([0-9]+)', (req, res) =>{
+    const id = req.params.id;
+    const newName = req.body.name;
+    console.log(id)
+
+    User.getById(id)
+        .then(theUser => {
+            theUser.updateName(newName)
+            .then(result => {
+                if (result.rowCount === 1) {
+                    res.send('yea you did');
+                } else {
+                    res.send('poopity scoop');
+                }
+            });
+        });
+});
 
 // Match the string "/user/" followed by one or more digits
 app.get('/users/:id([0-9]+)', (req, res) => {
