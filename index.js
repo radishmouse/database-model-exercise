@@ -2,10 +2,12 @@ require('dotenv').config();
 const User = require('./models/User')
 const Item = require('./models/Item');
 const Store = require('./models/Store');
+
 const express = require('express');
 const app = express();
-
 const bodyParser = require('body-parser');
+
+app.use(express.static('public'));
 
 const page = require('./views/page');
 const userList = require('./views/userList');
@@ -20,9 +22,6 @@ app.use(bodyParser.json());
 app.get('/', (req, res) => {
     const thePage = page('hey there')
     res.send(thePage);
-
-
-
 });
 
 // Listen for a GET request for User
