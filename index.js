@@ -11,6 +11,7 @@ app.use(express.static('public'));
 
 const page = require('./views/page');
 const userList = require('./views/userList');
+const userForm = require('./views/userForm');
 
 
 // configure body-parser to read data sent by HTML form tags
@@ -76,10 +77,10 @@ app.post('users/:id([0-9]+)', (req, res) =>{
 
 // Match the string "/user/" followed by one or more digits
 app.get('/users/:id([0-9]+)', (req, res) => {
-    console.log(req.params.id);
+    // console.log(req.params.id);
     User.getById(req.params.id)
         .then(theUser => {
-            res.send(theUser);
+            res.send(page(userForm(theUser)));
         })
         .catch(err => {
             res.send({

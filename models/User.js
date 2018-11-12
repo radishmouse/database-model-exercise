@@ -57,7 +57,15 @@ updateName(name) {
         update users
             set name = $2
         where id=$1
-        `, [this.id, name]);
+        `, [this.id, name])
+    .then(result => {
+        return result.rowCount === 1;
+        // if (result.rowCount === 1) {
+            // return true;
+        // } else {
+        //     return false;
+        // }
+    });
 }
 
 
