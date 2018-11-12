@@ -11,13 +11,13 @@ values
     ('wheaties', 1, false);
 
 insert into users
-    (name)
+    (name, username, password)
 values
-    ('justin'),
-    ('JC'),
-    ('chris'),
-    ('joey'),
-    ('lance');
+    ('justin', 'justin', '$2b$10$oZ6N6WL7xfB0dmV6qxXIbOTb6rk0cWIrSR.eZLEkbbosIjHdWg4i2' ),
+    ('JC' ,'JC', '$2b$10$oZ6N6WL7xfB0dmV6qxXIbOTb6rk0cWIrSR.eZLEkbbosIjHdWg4i2' ),
+    ('chris', 'chris', '$2b$10$oZ6N6WL7xfB0dmV6qxXIbOTb6rk0cWIrSR.eZLEkbbosIjHdWg4i2' ),
+    ('joey', 'joey', '$2b$10$oZ6N6WL7xfB0dmV6qxXIbOTb6rk0cWIrSR.eZLEkbbosIjHdWg4i2'),
+    ('lance', 'lance', '$2b$10$oZ6N6WL7xfB0dmV6qxXIbOTb6rk0cWIrSR.eZLEkbbosIjHdWg4i2');
 
 insert into stores
     (name)

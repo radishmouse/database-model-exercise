@@ -12,7 +12,7 @@ app.use(express.static('public'));
 const page = require('./views/page');
 const userList = require('./views/userList');
 const userForm = require('./views/userForm');
-
+const registrationForm = require('./views/registrationForm');
 
 // configure body-parser to read data sent by HTML form tags
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -56,6 +56,20 @@ app.post('/groceryitems', (req, res) => {
             res.send(theItem)
         })
     })
+
+
+// ====================================================
+// User Registration
+// ====================================================
+
+app.get('/register', (req,res) => {
+    // send them the signup form
+    const theForm = registrationForm();
+    const thePage = page(theForm);
+    res.send(thePage);
+});
+
+
 
 app.post('/users/:id([0-9]+)/edit', (req, res) =>{
     const id = req.params.id;

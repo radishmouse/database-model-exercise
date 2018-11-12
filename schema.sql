@@ -1,6 +1,10 @@
+
+
 create table users (
     id serial primary key,
-    name varchar(300)
+    name text,
+    username varchar(200) not null,
+    password varchar(60) not null
 );
 
 create table groceryitems (
