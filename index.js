@@ -57,7 +57,7 @@ app.post('/groceryitems', (req, res) => {
         })
     })
 
-app.post('users/:id([0-9]+)', (req, res) =>{
+app.post('/users/:id([0-9]+)/edit', (req, res) =>{
     const id = req.params.id;
     const newName = req.body.name;
     console.log(id)
@@ -65,18 +65,19 @@ app.post('users/:id([0-9]+)', (req, res) =>{
     User.getById(id)
         .then(theUser => {
             theUser.updateName(newName)
-            .then(result => {
-                if (result.rowCount === 1) {
-                    res.send('yea you did');
-                } else {
-                    res.send('poopity scoop');
+                .then(didUpdate => {
+                    if (didUpdate) {
+                    // res.send('yea you did');
+                        res.redirect(`/users/`);
+                    } else {
+                        res.send('poopity scoop');
                 }
             });
         });
 });
 
 // Match the string "/user/" followed by one or more digits
-app.get('/users/:id([0-9]+)', (req, res) => {
+app.get('/users/:id([0-9]+)/edit', (req, res) => {
     // console.log(req.params.id);
     User.getById(req.params.id)
         .then(theUser => {
