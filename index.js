@@ -70,6 +70,25 @@ app.get('/register', (req,res) => {
 });
 
 
+app.post('/register', (req, res) => {
+// process the signup form
+// grab the values out of req.body
+    const newName = req.body.name;
+    const newUserName = req.body.username;
+    const newPassword = req.body.password;
+
+// call user.add
+    User.add(newName, newUserName, newPassword)
+        .then(newUser => {
+            res.redirect('/welcome');
+        });
+});
+
+app.get('/welcome', (req, res) => {
+    // send them to welcome page
+    res.send(page('<h1>Hey punk</h1>'))
+})
+
 
 app.post('/users/:id([0-9]+)/edit', (req, res) =>{
     const id = req.params.id;

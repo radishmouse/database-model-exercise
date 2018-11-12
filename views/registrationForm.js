@@ -9,6 +9,10 @@ function registrationForm() {
         <input type="text" name="username">
         </label>
         <br>
+        <label> Password:
+            <input type="text" name="password">
+        </label>
+        <br>
         <label>
         <input type="submit" value="Register!">
         </label>
