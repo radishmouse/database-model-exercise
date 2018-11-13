@@ -6,7 +6,7 @@
   "scripts": {
     "debug": "node --inspect-brk index.js",
     "dev": "nodemon index.js",
-    "reset-db": "dropdb groceries-db; createdb groceries-db; psql -f schema.sql groceries-db; psql -f seed.sql groceries-db",
+    "reset-db": "dropdb groceries-db; createdb groceries-db; psql -f schema.sql groceries-db; psql -f seed.sql groceries-db; psql groceries-db < node_modules/connect-pg-simple/table.sql",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

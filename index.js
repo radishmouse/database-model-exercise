@@ -8,6 +8,18 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 
+// session variables
+const session = require('express-session');
+const pgSession = require('connect-pg-simple')(session);
+const db = require('./models/db');
+app.use(session({
+    store: new pgSession({
+        pgPromise: db
+    }),
+    secret: 'abc123vhorihanwealkivoeiawehiofghssviohliuyfyvfsdtl',
+    saveUninitialized: false
+}));
+
 app.use(express.static('public'));
 
 const page = require('./views/page');
@@ -16,6 +28,11 @@ const groceryList = require('./views/groceryList');
 const userForm = require('./views/userForm');
 const registrationForm = require('./views/registrationForm');
 const loginForm = require('./views/loginForm');
+
+
+
+
+
 
 // configure body-parser to read data sent by HTML form tags
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -98,7 +115,7 @@ app.post('/register', (req, res) => {
 
 app.get('/welcome', (req, res) => {
     // send them to welcome page
-    res.send(page('<h1>Hey punk</h1>'))
+    res.send(page(`<h1>Hey ${req.session.user.username}</h1>`))
 })
 
 // ====================================================
@@ -130,6 +147,7 @@ app.post('/login', (req, res) => {
         })
         .then(theUser => {
             if (theUser.passwordDoesMatch(thePassword)) {
+                req.session.user = theUser;
                 res.redirect('/welcome');
             } else {
                res.redirect('/login'); 
