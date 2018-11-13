@@ -109,12 +109,17 @@ app.post('/register', (req, res) => {
 // call user.add
     User.add(newName, newUserName, newPassword)
         .then(newUser => {
+            req.session.user = newUser;
             res.redirect('/welcome');
         });
 });
 
 app.get('/welcome', (req, res) => {
     // send them to welcome page
+    const visitorName = 'Person of the World';
+    if (req.session.user) {
+        visitorName = req.session.user.username;
+    }
     res.send(page(`<h1>Hey ${req.session.user.username}</h1>`))
 })
 
@@ -153,7 +158,17 @@ app.post('/login', (req, res) => {
                res.redirect('/login'); 
             }
         })
-})
+});
+
+
+// ===============================================
+// Logout
+app.post('/logout', (req, res) => {
+    // 1. destroy the session
+    req.session.destroy();
+    // 2. redirect them to the home page
+    res.redirect('/');
+});
 
 
 
