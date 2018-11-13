@@ -116,11 +116,11 @@ app.post('/register', (req, res) => {
 
 app.get('/welcome', (req, res) => {
     // send them to welcome page
-    const visitorName = 'Person of the World';
+    let visitorName = 'Person of the World';
     if (req.session.user) {
         visitorName = req.session.user.username;
     }
-    res.send(page(`<h1>Hey ${req.session.user.username}</h1>`))
+    res.send(page(`<h1>Hey ${visitorName}</h1>`))
 })
 
 // ====================================================
