@@ -17,7 +17,7 @@ function footer() {
 }
 
 function logoutButton () {
-    reutrn `
+    return `
     <div>
             <form action="/logout" method="POST">
                 <input type="submit" value="logout">
@@ -30,7 +30,7 @@ function logoutButton () {
 function loginOrRegister () {
     return `
     <div>
-    <a href="/login">Login</a
+    <a href="/login">Login</a>
     |
     <a href="/register">Register</a>
     </div>
