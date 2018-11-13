@@ -30,6 +30,7 @@ static add(name, username, password) {
 
 
 
+
 // ===================================
 // RETRIEVE
 static getAll() {
@@ -66,6 +67,19 @@ static getByUsername(username) {
     })
 }
 
+
+
+getGroceries () {
+    return db.any(`
+    select * from groceryitems
+        where user_id = $1
+    `, [this.id])
+}
+
+passwordDoesMatch(thePassword) {
+    const didMatch = bcrypt.compareSync(thePassword, this.pwhash);
+    return didMatch;
+}
 // ===================================
 // UPDATE
 

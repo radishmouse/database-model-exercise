@@ -2,7 +2,7 @@ require('dotenv').config();
 const User = require('./models/User')
 const Item = require('./models/Item');
 const Store = require('./models/Store');
-const bcrypt = require('bcrypt');
+// const bcrypt = require('bcrypt');
 
 const express = require('express');
 const app = express();
@@ -12,6 +12,7 @@ app.use(express.static('public'));
 
 const page = require('./views/page');
 const userList = require('./views/userList');
+const groceryList = require('./views/groceryList');
 const userForm = require('./views/userForm');
 const registrationForm = require('./views/registrationForm');
 const loginForm = require('./views/loginForm');
@@ -59,6 +60,15 @@ app.post('/groceryitems', (req, res) => {
         })
     })
 
+// ===================================================
+// Retrieve all groceries for a user
+
+// app.get('/users/:id([0-9]+)', (req, res) => {
+//     User.getById(req.params.id)
+//         .then(theUser => {
+//             theUser.getGroceries
+//         })
+// };
 
 // ====================================================
 // User Registration
@@ -119,8 +129,7 @@ app.post('/login', (req, res) => {
             res.redirect('/login');
         })
         .then(theUser => {
-            const didMatch = bcrypt.compareSync(thePassword, theUser.pwhash);
-            if (didMatch) {
+            if (theUser.passwordDoesMatch(thePassword)) {
                 res.redirect('/welcome');
             } else {
                res.redirect('/login'); 

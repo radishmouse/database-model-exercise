@@ -12,3 +12,7 @@ html, body {
     background-color: azure;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+.grocery-list-item {
+    color:orange;
+}
