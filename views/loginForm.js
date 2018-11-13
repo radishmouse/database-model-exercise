@@ -1,10 +1,8 @@
-function registrationForm() {
+function loginForm() {
     return `
+    
     <form action="" method="POST">
-        <label> Your name
-            <input type="text" name="name">
-        </label>
-        <br>
+        
         <label> Username:
         <input type="text" name="username">
         </label>
@@ -14,11 +12,14 @@ function registrationForm() {
         </label>
         <br>
         <label>
-        <input type="submit" value="Register!">
+        <input type="submit" value="Login">
         </label>
     </form>
     
-    `;
+    
+    
+    
+    `
 }
 
-module.exports = registrationForm;
+module.exports = loginForm;

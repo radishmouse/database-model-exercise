@@ -1,3 +1,6 @@
+const { header, footer } = require('./helper')
+
+
 function page(content) {
     return `
     <!DOCTYPE html>
@@ -11,7 +14,9 @@ function page(content) {
         <link rel="stylesheet" href="/stylesheets/index.css">
     </head>
     <body>
-        <h1>${content}</h1>
+        ${header()}
+        ${content}
+        ${footer()}
     </body>
     </html>
     

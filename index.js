@@ -2,6 +2,7 @@ require('dotenv').config();
 const User = require('./models/User')
 const Item = require('./models/Item');
 const Store = require('./models/Store');
+const bcrypt = require('bcrypt');
 
 const express = require('express');
 const app = express();
@@ -13,6 +14,7 @@ const page = require('./views/page');
 const userList = require('./views/userList');
 const userForm = require('./views/userForm');
 const registrationForm = require('./views/registrationForm');
+const loginForm = require('./views/loginForm');
 
 // configure body-parser to read data sent by HTML form tags
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -88,6 +90,50 @@ app.get('/welcome', (req, res) => {
     // send them to welcome page
     res.send(page('<h1>Hey punk</h1>'))
 })
+
+// ====================================================
+// User Login
+// ====================================================
+app.get('/login', (req, res) => {
+    // send the login form
+    const theForm = loginForm();
+    const thePage = page(theForm);
+    
+    res.send(thePage);
+
+    
+})
+
+app.post('/login', (req, res) => {
+    // process the login form
+    // 1. grab the values from form
+    const theUsername = 
+    req.body.username;
+    const thePassword = 
+    req.body.password;
+
+    // 2. find a user whose name matches `the Username`
+    User.getByUsername(theUsername)
+        .catch(err => {
+            console.log(err);
+            res.redirect('/login');
+        })
+        .then(theUser => {
+            const didMatch = bcrypt.compareSync(thePassword, theUser.pwhash);
+            if (didMatch) {
+                res.redirect('/welcome');
+            } else {
+               res.redirect('/login'); 
+            }
+        })
+})
+
+
+
+
+
+
+
 
 
 app.post('/users/:id([0-9]+)/edit', (req, res) =>{

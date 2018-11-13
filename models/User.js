@@ -3,10 +3,11 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 class User {
-    constructor(id, name) {
+    constructor(id, name, username, pwhash) {
     this.id= id;
     this.name= name;
-    this.username = this.username;
+    this.username = username;
+    this.pwhash = pwhash;
   
 }
 // ===================================
@@ -16,7 +17,7 @@ static add(name, username, password) {
     const hash = bcrypt.hashSync(password, salt);
     return db.one(`
         insert into users
-            (name, username, password)
+            (name, username, pwhash)
         values
             ($1, $2, $3)
         returning id
@@ -52,6 +53,18 @@ static getById(id) {
     })
 }
 
+static getByUsername(username) {
+    return db.one(`
+        select * from users
+        where username ilike
+        '%$1:raw%'
+    `, [username]).then(result => {
+        return new User(result.id,
+        result.name,
+        result.username,
+        result.pwhash);
+    })
+}
 
 // ===================================
 // UPDATE

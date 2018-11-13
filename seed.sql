@@ -11,7 +11,7 @@ values
     ('wheaties', 1, false);
 
 insert into users
-    (name, username, password)
+    (name, username, pwhash)
 values
     ('justin', 'justin', '$2b$10$oZ6N6WL7xfB0dmV6qxXIbOTb6rk0cWIrSR.eZLEkbbosIjHdWg4i2' ),
     ('JC' ,'JC', '$2b$10$oZ6N6WL7xfB0dmV6qxXIbOTb6rk0cWIrSR.eZLEkbbosIjHdWg4i2' ),
