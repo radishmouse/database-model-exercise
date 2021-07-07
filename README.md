@@ -30,3 +30,13 @@ Similar to the GroceryList app, you'll create a database with the following tabl
 You'll need to add foreign keys in your `create table` statements, and you'll want additional queries that use `inner join` to retrieve info from both tables.
 
 ### Bonus: add a Comments table
+
+
+
+# Adding Users
+
+# Adding Relationships
+
+## Add an `edit` link to each `<li>`
+
+Added this to the backtick string in `userToItem` (in the `userList.js` file).
